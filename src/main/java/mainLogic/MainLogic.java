@@ -12,25 +12,24 @@ public class MainLogic {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static void printColorMessage(String message, String Color) {
+    public static void printColorBoldMessage(String message, String Color) {
         String style;
         if (Color.equals("red")) {
-            style = "[31m";
-
+            style = "[01;31m";
         } else if (Color.equals("green")) {
-            style = "[32m";
-
+            style = "[01;32m";
         } else if (Color.equals("yellow")) {
-            style = "[33m";
-
+            style = "[01;33m";
         } else if (Color.equals("blue")) {
-            style = "[34m";
-
+            style = "[01;34m";
         } else if (Color.equals("violet")) {
-            style = "[35m";
-
+            style = "[01;35m";
+        } else if (Color.equals("turquoise")) {
+            style = "[01;36m";
+        } else if (Color.equals("grey")) {
+            style = "[01;37m";
         } else {
-            style = "[31m";
+            style = "[01;31m";
         }
         System.out.println((char) 27 + style + message);
     }
@@ -40,7 +39,7 @@ public class MainLogic {
         if (sc.hasNextDouble()) {
             number = sc.nextDouble();
         } else {
-            printColorMessage(NUMBER_IS_NOT_VALID, "red");
+            printColorBoldMessage(NUMBER_IS_NOT_VALID, "red");
             sc.next();
             number = getNumber();
         }
@@ -48,12 +47,12 @@ public class MainLogic {
     }
 
     public static int getArithmeticOperations() {
-        printColorMessage(INPUT_ARITHMETIC_OPERATIONS, "blue");
+        printColorBoldMessage(INPUT_ARITHMETIC_OPERATIONS, "blue");
         int operationNumber;
         if (sc.hasNextInt()) {
             operationNumber = sc.nextInt();
         } else {
-            printColorMessage(ARITHMETIC_OPERATION_IS_NOT_SUPPORTED, "red");
+            printColorBoldMessage(ARITHMETIC_OPERATION_IS_NOT_SUPPORTED, "red");
             sc.next();
             operationNumber = getArithmeticOperations();
         }
@@ -76,7 +75,7 @@ public class MainLogic {
                 result = division(numberOne, numberTwo);
                 break;
             default:
-                printColorMessage(ARITHMETIC_OPERATION_IS_NOT_SUPPORTED, "red");
+                printColorBoldMessage(ARITHMETIC_OPERATION_IS_NOT_SUPPORTED, "red");
                 result = calculateArithmeticOperations(getArithmeticOperations(), numberOne, numberTwo);
         }
         return result;
@@ -84,20 +83,21 @@ public class MainLogic {
 
     public static int getRepeatProgram() {
         int repeat;
-        printColorMessage(REPEAT_PROGRAM, "violet");
+        printColorBoldMessage(REPEAT_PROGRAM, "violet");
         if (sc.hasNextInt()) {
             repeat = sc.nextInt();
 
             if ((repeat != 1) && (repeat != 2)) {
-                printColorMessage(REPEAT_CHOICE, "red");
+                printColorBoldMessage(REPEAT_CHOICE, "red");
                 repeat = getRepeatProgram();
             }
 
         } else {
-            printColorMessage(REPEAT_CHOICE, "red");
+            printColorBoldMessage(REPEAT_CHOICE, "red");
             sc.next();
             repeat = getRepeatProgram();
         }
         return repeat;
     }
+
 }
